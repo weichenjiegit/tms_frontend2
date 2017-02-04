@@ -324,7 +324,37 @@ export const PAGES_MENU = [
             target: '_blank'
           }
         }
-      }
+      },
+     {
+        path: 'tms',
+        data: {
+          menu: {
+            title: 'Transportation',
+            icon: 'ion-grid',
+            selected: false,
+            expanded: false,
+            order: 900,
+          }
+        },
+        children: [
+          {
+            path: 'order',
+            data: {
+              menu: {
+                title: 'Order',
+              }
+            }
+          },
+          {
+            path: 'shipment',
+            data: {
+              menu: {
+                title: 'Shipment',
+              }
+            }
+          }
+        ]
+      },
     ]
   }
 ];

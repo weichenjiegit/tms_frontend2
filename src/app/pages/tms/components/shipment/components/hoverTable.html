@@ -1,0 +1,39 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th>Shipment ID</th>
+      <th class="align-right">Delivery Date</th>
+      <th class="align-right">Stops</th>
+      <th class="align-right">Shipper</th>
+      <th class="align-right">Consignee</th>
+      <th class="align-right">Weight</th>
+      <th class="align-right">Volume</th>
+      <th class="align-right">Pallet Count</th>
+      <th class="align-right">Cost</th>
+      <th class="align-right">Mode</th>
+      <th class="align-right">Equipment</th>
+      <th class="align-right">Status</th>
+      <th class="align-right">Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of metricsTableData" class="no-top-border">
+      <td ngClass="nowrap">{{item.id}}</td>
+      <td class="align-right">{{item.deliveryDate}}</td>
+      <td class="align-right">{{item.stops}}</td>
+      <td class="align-right">{{item.shipper}}</td>
+      <td class="align-right">{{item.consignee}}</td>
+      <td class="align-right">{{item.weight}}</td>
+      <td class="align-right">{{item.volume}}</td>
+      <td class="align-right">{{item.palletCount}}</td>
+      <td class="align-right">{{item.cost}}</td>
+      <td class="align-right">{{item.mode}}</td>
+      <td class="align-right">{{item.equipment}}</td>
+      <td class="align-right">{{item.status}}</td>
+      <td class="align-right">{{item.note}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

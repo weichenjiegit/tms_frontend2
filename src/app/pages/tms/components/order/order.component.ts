@@ -1,13 +1,15 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 import { OrderService } from './order.service';
 import { LocalDataSource } from 'ng2-smart-table';
+import { OrderAppengineService } from './order.appengine.service';
 
 @Component({
   selector: 'basic-tables',
   encapsulation: ViewEncapsulation.None,
   styles: [require('./order.scss')],
-  template: require('./order.html')
+  template: require('./order.html'),
+  providers: [OrderAppengineService]
 })
 export class Order {
 
@@ -53,59 +55,59 @@ export class Order {
         title: 'Volume',
         type: 'number'
       },
-	  fromLocation: {
+      fromLocation: {
         title: 'From Location',
         type: 'string'
       },
-	  fromAddress: {
+      fromAddress: {
         title: 'From Address',
         type: 'string'
       },
-	  fromContact: {
+      fromContact: {
         title: 'From Contact',
         type: 'string'
       },
-	  toLocation: {
+      toLocation: {
         title: 'To Location',
         type: 'string'
       },
-	  toAddress: {
+      toAddress: {
         title: 'To Address',
         type: 'string'
       },
-	  toContact: {
+      toContact: {
         title: 'To Contact',
         type: 'string'
       },
-	  cargoValue: {
+      cargoValue: {
         title: 'Cargo Value',
         type: 'number'
       },
-	  orderStatus: {
+      orderStatus: {
         title: 'Order Status',
         type: 'string'
       },
-	  shipper: {
+      shipper: {
         title: 'Shipper',
         type: 'string'
       },
-	  consignee: {
+      consignee: {
         title: 'Consignee',
         type: 'string'
       },
-	  creationDate: {
+      creationDate: {
         title: 'Creation Date',
         type: 'string'
       },
-	  creationBy: {
+      creationBy: {
         title: 'Creation By',
         type: 'string'
       },
-	  lastUpdateDate: {
+      lastUpdateDate: {
         title: 'Last Update Date',
         type: 'string'
       },
-	  lastUpdateBy: {
+      lastUpdateBy: {
         title: 'Last Update By',
         type: 'string'
       }
@@ -113,11 +115,15 @@ export class Order {
   };
 
   source: LocalDataSource = new LocalDataSource();
+  echoResponse: string;
+  errorMessage;
 
-  constructor(protected service: OrderService) {
+  constructor(protected service: OrderService, protected appengineService: OrderAppengineService) {
     this.service.getData().then((data) => {
       this.source.load(data);
     });
+    this.appengineService.getEchoes()
+      .subscribe((data) => this.echoResponse = data, error => this.errorMessage = <any>error);
   }
 
   onDeleteConfirm(event): void {

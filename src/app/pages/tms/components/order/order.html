@@ -3,6 +3,7 @@
   <div class="row">
     <ba-card title="Orders" baCardClass="with-scroll">
       <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+      <p>echoResponse: {{echoResponse}}</p>
     </ba-card>
     <ship-button></ship-button>
   </div>
